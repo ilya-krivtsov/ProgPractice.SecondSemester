@@ -55,12 +55,12 @@ public class PriorityQueue<TElement, TPriority>
             return;
         }
 
-        while (item.Next != null && comparer.Compare(priority, item.Priority) >= 0)
+        while (item.Next != null && comparer.Compare(priority, item.Next.Priority) >= 0)
         {
             item = item.Next;
         }
 
-        var newItem = new Item(element, priority, null);
+        var newItem = new Item(element, priority, item.Next);
         item.Next = newItem;
     }
 
