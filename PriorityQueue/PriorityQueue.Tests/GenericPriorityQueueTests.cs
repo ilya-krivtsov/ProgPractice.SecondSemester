@@ -8,6 +8,10 @@ public abstract class GenericPriorityQueueTests<TElement, TPriority>
 
     public abstract ItemPair SingleTestPair { get; }
 
+    public abstract IEnumerable<ItemPair> SamePriorityTestPairs { get; }
+
+    public abstract IEnumerable<ItemPair> IncreasingPriorityTestPairs { get; }
+
     [SetUp]
     public void Setup()
     {
@@ -38,6 +42,34 @@ public abstract class GenericPriorityQueueTests<TElement, TPriority>
     {
         queue.Enqueue(SingleTestPair.Element, SingleTestPair.Priority);
         Assert.That(queue.Dequeue(), Is.EqualTo(SingleTestPair.Element));
+    }
+
+    [Test]
+    public void Dequeue_ShouldReturn_EnqueuedItems_InSameOrder_IfPriorityIsSame()
+    {
+        foreach (var (element, priority) in SamePriorityTestPairs)
+        {
+            queue.Enqueue(element, priority);
+        }
+
+        foreach (var (element, priority) in SamePriorityTestPairs)
+        {
+            Assert.That(queue.Dequeue(), Is.EqualTo(element));
+        }
+    }
+
+    [Test]
+    public void Dequeue_ShouldReturn_EnqueuedItems_InReverseOrder_IfPriorityIsDecreasing()
+    {
+        foreach (var (element, priority) in IncreasingPriorityTestPairs.Reverse())
+        {
+            queue.Enqueue(element, priority);
+        }
+
+        foreach (var (element, priority) in IncreasingPriorityTestPairs)
+        {
+            Assert.That(queue.Dequeue(), Is.EqualTo(element));
+        }
     }
 
     public readonly record struct ItemPair(TElement Element, TPriority Priority);
