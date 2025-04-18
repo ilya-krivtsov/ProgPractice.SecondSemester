@@ -7,10 +7,10 @@ public class StackTests
         [.. Enumerable.Range(1, 16)]
     ];
 
-    private static IStack[] Stacks => [new LinkedStack(), new ArrayStack()];
+    private static IStack<double>[] Stacks => [new LinkedStack<double>(), new ArrayStack<double>()];
 
     [Test]
-    public void TestStack([ValueSource(nameof(Stacks))] IStack stack, [ValueSource(nameof(Data))] double[] data)
+    public void TestStack([ValueSource(nameof(Stacks))] IStack<double> stack, [ValueSource(nameof(Data))] double[] data)
     {
         Assert.That(stack.IsEmpty, Is.True);
 
@@ -25,18 +25,12 @@ public class StackTests
         {
             Assert.Multiple(() =>
             {
-                var (value, isError) = stack.Pop();
-                Assert.That(isError, Is.False);
+                var value = stack.Pop();
                 Assert.That(value, Is.EqualTo(data[i]));
             });
         }
 
         Assert.That(stack.IsEmpty, Is.True);
-
-        Assert.Multiple(() =>
-        {
-            var (_, isError) = stack.Pop();
-            Assert.That(isError, Is.True);
-        });
+        stack.Pop();
     }
 }

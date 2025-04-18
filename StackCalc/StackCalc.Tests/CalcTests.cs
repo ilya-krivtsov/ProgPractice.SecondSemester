@@ -24,7 +24,7 @@ public class CalcTests
     [SetUp]
     public void Setup()
     {
-        calc = new(new ArrayStack());
+        calc = new(new ArrayStack<double>());
     }
 
     [Test]

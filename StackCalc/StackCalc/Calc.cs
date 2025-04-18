@@ -3,18 +3,9 @@ namespace StackCalc;
 /// <summary>
 /// Stack calculator.
 /// </summary>
-public class Calc
+public class Calc(IStack<double> stack)
 {
-    private readonly IStack stack;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Calc"/> class.
-    /// </summary>
-    /// <param name="stack">Stack to use.</param>
-    public Calc(IStack stack)
-    {
-        this.stack = stack;
-    }
+    private readonly IStack<double> stack = stack;
 
     /// <summary>
     /// Evaluates <paramref name="input"/> as <see langword="double"/>.
@@ -33,13 +24,8 @@ public class Calc
             }
             else
             {
-                var (rightOperand, isError) = stack.Pop();
-                (var leftOperand, isError) = stack.Pop();
-
-                if (isError)
-                {
-                    throw new();
-                }
+                var rightOperand = stack.Pop();
+                var leftOperand = stack.Pop();
 
                 var operationResult = token switch
                 {
@@ -54,12 +40,7 @@ public class Calc
             }
         }
 
-        var (result, isError2) = stack.Pop();
-
-        if (isError2)
-        {
-            throw new();
-        }
+        var result = stack.Pop();
 
         if (!stack.IsEmpty)
         {

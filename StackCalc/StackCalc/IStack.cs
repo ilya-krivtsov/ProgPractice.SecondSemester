@@ -3,7 +3,8 @@ namespace StackCalc;
 /// <summary>
 /// Stack of elements.
 /// </summary>
-public interface IStack
+/// <typeparam name="T">Type of elements.</typeparam>
+public interface IStack<T>
 {
     /// <summary>
     /// Gets a value indicating whether stack is not empty.
@@ -14,13 +15,13 @@ public interface IStack
     /// Pushes <paramref name="item"/> on top of stack.
     /// </summary>
     /// <param name="item">The item to push.</param>
-    public void Push(double item);
+    public void Push(T item);
 
     /// <summary>
-    /// Tries to pop value off top of stack.
+    /// Pops value off top of stack.
     /// </summary>
     /// <returns>
-    /// Tuple of value of top and <see langword="true"/> if stack was not empty, <see langword="false"/> otherwise.
+    /// Value of top.
     /// </returns>
-    public (double Value, bool IsError) Pop();
+    public T Pop();
 }
