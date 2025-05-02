@@ -1,4 +1,8 @@
-﻿namespace PriorityQueue;
+// <copyright file="PriorityQueue.cs" company="Ilya Krivtsov">
+// Copyright (c) Ilya Krivtsov. All rights reserved.
+// </copyright>
+
+namespace PriorityQueue;
 
 /// <summary>
 /// Prioirty queue data structure.

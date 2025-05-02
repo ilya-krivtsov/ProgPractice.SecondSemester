@@ -1,3 +1,7 @@
+// <copyright file="TypedPriorityQueueTests.cs" company="Ilya Krivtsov">
+// Copyright (c) Ilya Krivtsov. All rights reserved.
+// </copyright>
+
 namespace PriorityQueue.Tests;
 
 public static class TypedPriorityQueueTests

@@ -1,4 +1,8 @@
-﻿namespace PriorityQueue.Tests;
+// <copyright file="GenericPriorityQueueTests.cs" company="Ilya Krivtsov">
+// Copyright (c) Ilya Krivtsov. All rights reserved.
+// </copyright>
+
+namespace PriorityQueue.Tests;
 
 public abstract class GenericPriorityQueueTests<TElement, TPriority>
 {
